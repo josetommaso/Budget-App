@@ -1,13 +1,13 @@
 import { Fragment, useState } from 'react';
 import Error from './Error';
 
-const Question = () => {
-    const [ budget, setBudget ] = useState(0);
+const Question = ({ setBudget, setRemaining }) => {
+    const [ budgetAmount, setBudgetAmount ] = useState(0);
     const [ error, setError ] = useState(false);
 
     //function that read the budget
     const addBudget = e => {
-        setBudget(parseInt(e.target.value), 10);
+        setBudgetAmount(parseInt(e.target.value), 10);
     }
 
     // Submit to define the budget
@@ -15,13 +15,16 @@ const Question = () => {
         e.preventDefault();
         
         // Validation
-        if(budget < 1 || isNaN(budget)) {
+        if(budgetAmount < 1 || isNaN(budgetAmount)) {
             setError(true);
             return;
         }
 
         // If valid
         setError(false);
+        setBudget(budgetAmount);
+        setRemaining(budgetAmount)
+
     }
 
     return ( 
