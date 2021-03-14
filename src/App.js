@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import Question from './components/Question';
+import Form from './components/Form';
 
 function App() {
 
   const [ budget, setBudget ] = useState(0);
   const [ remaining, setRemaining ] = useState(0);
+  const [ showquestion, updateQuestion ] = useState(true);
   
 
   return (
@@ -12,18 +14,26 @@ function App() {
       <header>
         <h1>Weekly Expense</h1>
         <div className="contenido-principal contenido">
-          <Question
-            setBudget={setBudget}
-            setRemaining={setRemaining}
-          />
-          <div className="row">
-            <div className="one-half column">
-              1
-            </div>
-            <div className="one-half column">
+          { showquestion ? 
+            (
+              <Question
+              setBudget={setBudget}
+              setRemaining={setRemaining}
+              updateQuestion={updateQuestion}
+            />
+            )
+            :
+            (
+            <div className="row">
+              <div className="one-half column">
+                <Form />
+              </div>
+              <div className="one-half column">
               2
+              </div>
             </div>
-          </div>
+            )
+          }
         </div>
       </header>
     </div>
