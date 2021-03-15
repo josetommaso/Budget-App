@@ -58,8 +58,9 @@ const Form = ({addNewExpense}) => {
                     type="number"
                     className="u-full-width"
                     placeholder="E.g. 40"
+                    step="0.01"
                     value={expenseamount}
-                    onChange={e => setExpenseAmount(parseInt(e.target.value))}
+                    onChange={e => setExpenseAmount(parseFloat(e.target.value))}
                 />
             </div>
             <input 
