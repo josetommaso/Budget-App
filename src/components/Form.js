@@ -1,16 +1,33 @@
 import React, { useState } from 'react';
+import Error from './Error';
+import shortid from 'shortid';
 
 const Form = () => {
     const [ expensename, setExpenseName ] = useState('');
     const [ expenseamount, setExpenseAmount ] = useState(0);
+    const [ error, setError ] = useState(false);
 
     // when user add an expense
     const addExpense = e => {
         e.preventDefault();
 
         // validation
+        if(expenseamount < 1 || isNaN(expenseamount) || expensename.trim() === '') {
+            setError(true);
+            return;
+        }
+
+        setError(false);
 
         //build the expense
+
+        const expense = {
+            expensename,
+            expenseamount,
+            id: shortid.generate()
+        }
+
+        console.log(expense);
 
         //send the expense to the main component
 
@@ -23,6 +40,7 @@ const Form = () => {
             onSubmit={addExpense}
         >
             <h2>Add your expenses here</h2>
+            { error ? <Error message="All fields are required or Amount is incorrect" /> : null }
             <div className="campo">
                 <label>Expense</label>
                 <input 
