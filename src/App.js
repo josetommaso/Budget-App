@@ -29,7 +29,7 @@ function App() {
       // reset to false
       setCreateExpense(false);
     }
-  }, [expense])
+  }, [expense, createExpense, expenses, remaining])
 
   
 
